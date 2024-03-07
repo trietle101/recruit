@@ -121,11 +121,14 @@ p {
         }
       }
     }
-    .dropdown {
-      width: 29.3%;
-      padding: 18rem;
-      @include flex-center(space-between);
+    .drop-down_container {
+      width: 379rem;
+      // padding: 18rem;
+      // @include flex-center(space-between);
+      border-radius: 0;
       border-left: 1px solid #ededed;
+
+      background-position-x: 345rem;
     }
     .search-btn {
       background-color: $orange;
@@ -133,6 +136,7 @@ p {
       width: 12.1%;
       @include flex-center(center);
       gap: 4rem;
+      cursor: pointer;
       p {
         color: #ffffff;
         font-weight: bold;
@@ -269,6 +273,7 @@ p {
 }
 .notfound-image {
   width: fit-content;
+  margin: auto;
 }
 .input-text {
   position: relative;
@@ -298,6 +303,7 @@ p {
       position: absolute;
       left: 16rem;
       top: 17rem;
+      color: $gray-300;
     }
     &:focus {
       outline: none;
@@ -354,17 +360,41 @@ p {
       color: red;
     }
   }
-  &_container {
-    width: 492rem;
+  // &_container {
+  //   width: 492rem;
+  //   height: 48rem;
+  //   border-radius: 8rem;
+  //   @include flex-center(space-between);
+  //   background-color: #ffffff;
+  //   padding-left: 16rem;
+  //   padding-right: 16rem;
+  //   p {
+  //     font-size: 16rem;
+  //     color: $gray-500;
+  //   }
+  // }
+  select {
+    width: 524rem;
     height: 48rem;
     border-radius: 8rem;
-    @include flex-center(space-between);
-    background-color: #ffffff;
-    padding-left: 16rem;
-    padding-right: 16rem;
-    p {
+    border: none;
+    font-size: 16rem;
+    color: $gray-500;
+    padding: 0 16rem 0 16rem;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("src/assets/icons/arrow.png");
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-position-x: 490rem;
+    &::placeholder {
       font-size: 16rem;
-      color: $gray-500;
+      position: absolute;
+      left: 16rem;
+      top: 17rem;
+    }
+    &:focus {
+      outline: none;
     }
   }
 }
@@ -453,6 +483,64 @@ p {
     }
   }
 }
+.login {
+  width: fit-content;
+  height: fit-content;
+  .banner {
+    font-size: 36rem;
+    color: $orange;
+    font-weight: bold;
+    margin-bottom: 32rem;
+  }
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 24rem;
+    margin-bottom: 16rem;
+  }
+  .func {
+    display: flex;
+    flex-direction: column;
+    gap: 16rem;
+    .remember-forgot {
+      @include flex-center(space-between);
+      .remember {
+        display: flex;
+        gap: 8rem;
+        align-items: center;
+        p {
+          font-size: 16rem;
+          color: #4d4d4d;
+        }
+        input[type="checkbox"] {
+          height: 20rem;
+          width: 20rem;
+          margin: 0;
+          border-radius: 4rem;
+          accent-color: $orange;
+        }
+      }
+      a {
+        font-size: 16rem;
+        color: $orange;
+      }
+    }
+    .g-recaptcha {
+      height: 75rem;
+    }
+    button {
+      width: 100%;
+      height: 48rem;
+      border-radius: 8rem;
+      background-color: $orange;
+      border: none;
+      font-size: 18rem;
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
 ////////////////////PAGES////////////////////
 .employeemain {
   &-container {
@@ -487,5 +575,33 @@ p {
     font-size: 32rem;
     font-weight: bold;
     color: $orange;
+  }
+}
+.account-layout {
+  width: 1290rem;
+  margin: 50rem auto;
+  height: 100vh;
+  .header {
+    width: 100%;
+    margin-bottom: 91rem;
+    @include flex-center(space-between);
+    .icons {
+      width: 373.24rem;
+      @include flex-center(space-between);
+      img {
+        height: 52rem;
+      }
+    }
+    p {
+      width: 437rem;
+      font-size: 28rem;
+      font-weight: 600;
+      color: $orange;
+    }
+  }
+  .content {
+    width: 100%;
+    height: fit-content;
+    @include flex-center(space-between);
   }
 }

@@ -1,7 +1,7 @@
 import SearchBar from "../../components/SearchBar";
 import Jobs from "../../components/Jobs";
 
-function EmployeeMain() {
+function EmployerMain() {
   return (
     <div className="employeemain">
       <div className="employeemain-container">
@@ -18,4 +18,4 @@ function EmployeeMain() {
   );
 }
 
-export default EmployeeMain;
+export default EmployerMain;
