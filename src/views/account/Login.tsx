@@ -1,5 +1,8 @@
 import Dropdown from "../../components/Dropdown";
 import InputText from "../../components/InputText";
+import InputPassword from "../../components/InputPassword";
+import ReCAPTCHA from "react-google-recaptcha";
+import Error from "../../components/Error";
 
 function Login() {
   return (
@@ -13,8 +16,9 @@ function Login() {
             label="Vai trò"
           />
           <InputText placeholder="Nhập email" label="Email" />
-          <InputText placeholder="Nhập mật khẩu" label="Mật khẩu" />
+          <InputPassword placeholder="Nhập mật khẩu" label="Mật khẩu" />
         </div>
+        <Error message="Sai tên đăng nhập hoặc mật khẩu" show={"closed"} />
         <div className="func">
           <div className="remember-forgot">
             <div className="remember">
@@ -23,10 +27,7 @@ function Login() {
             </div>
             <a href="#">Quên mật khẩu?</a>
           </div>
-          <div
-            className="g-recaptcha"
-            data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-          ></div>
+          <ReCAPTCHA sitekey="6Le4LzcpAAAAAAxhC87D-pYRskV2oo5CJwpZCCjn" />
           <button type="submit">Đăng nhập</button>
         </div>
       </form>
