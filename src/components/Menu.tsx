@@ -1,26 +1,36 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, clearUser } from "../features/user/userSlice";
-import { RootState, AppDispatch } from "../app/store";
+// import { setUser, clearUser } from "../redux/features/user/userSlice";
+import { RootState, AppDispatch } from "../redux/store";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../redux/actions/userActionThunk";
 
 const Menu = () => {
-  const user = useSelector((state: RootState) => state.user.value);
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const { images } = useSelector((state: RootState) => state.images);
+  const { isLoading } = useSelector((state: RootState) => state.user);
+  const currentUser = localStorage.getItem("currentUser");
+  if (!isLoading && !currentUser) {
+    navigate("/account");
+  }
   return (
     <div className="menu">
       <div className="menu-container">
-        <div className="left">
-          <div className="left-container">
-            <img src="src/assets/images/alta.png" alt="alta" />
-            <img src="src/assets/images/Plastics.png" alt="alta" />
-            <img src="src/assets/images/media.png" alt="alta" />
-            <img src="src/assets/images/software.png" alt="alta" />
-            <img src="src/assets/images/unigons.png" alt="alta" />
-          </div>
-        </div>
+        <Link to="/" className="left">
+          {images !== null && (
+            <div className="left-container">
+              <img src={images[0].url} alt="alta" />
+              <img src={images[4].url} alt="alta" />
+              <img src={images[2].url} alt="alta" />
+              <img src={images[5].url} alt="alta" />
+              <img src={images[6].url} alt="alta" />
+            </div>
+          )}
+        </Link>
         <div className="right">
           <div className="right-container">
-            {user ? (
+            {currentUser ? (
               <>
                 <div className="item">
                   <img
@@ -33,10 +43,14 @@ const Menu = () => {
                   <img src="src/assets/icons/syllabus.png" alt="signup" />
                   <p>Tiến trình học tập</p>
                 </div>
-                <div className="user" onClick={() => dispatch(clearUser())}>
+                <Link
+                  to="/account"
+                  className="user"
+                  onClick={() => dispatch(logout())}
+                >
                   <img src="src/assets/images/user.png" alt="user" />
-                  <p>{user.name}</p>
-                </div>
+                  <p>Trung Kiên</p>
+                </Link>
               </>
             ) : (
               <>
@@ -47,13 +61,10 @@ const Menu = () => {
                   />
                   <p>Xem JD yêu cầu tuyển dụng</p>
                 </div>
-                <div
-                  className="item"
-                  onClick={() => dispatch(setUser({ name: "Trung Kiên" }))}
-                >
+                <Link to="application" className="item">
                   <img src="src/assets/icons/signup.png" alt="signup" />
                   <p>Đăng ký trực tuyến</p>
-                </div>
+                </Link>
               </>
             )}
           </div>
@@ -62,5 +73,5 @@ const Menu = () => {
     </div>
   );
 };
-
+// };
 export default Menu;

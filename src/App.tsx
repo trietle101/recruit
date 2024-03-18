@@ -14,8 +14,17 @@ import ExamHome from "./views/exam/ExamHome";
 import ExamLayout from "./views/exam/ExamLayout";
 import Question from "./views/exam/Question";
 import Report from "./views/employee/Report";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getImages } from "./redux/actions/imagesActionThunk";
+import { AppDispatch } from "./redux/store";
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(getImages());
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>

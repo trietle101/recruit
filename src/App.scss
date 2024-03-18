@@ -58,6 +58,7 @@ p {
           align-items: center;
           gap: 6rem;
           cursor: pointer;
+          text-decoration: none;
           &:hover {
             img {
               filter: invert(51%) sepia(32%) saturate(3288%) hue-rotate(347deg)
@@ -96,6 +97,7 @@ p {
           background-color: $orange;
           padding: 0 10rem;
           cursor: pointer;
+          text-decoration: none;
           p {
             font-size: 20rem;
             font-weight: 500;
@@ -587,7 +589,7 @@ p {
     color: red;
   }
 }
-.closed {
+.hide {
   overflow: hidden;
   max-height: 0;
   padding-top: 0;
@@ -597,7 +599,7 @@ p {
   transition: all 0.5s ease;
   will-change: transform;
 }
-.open {
+.show {
   max-height: 24rem;
   overflow: hidden;
   transition: all 0.5s ease;

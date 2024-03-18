@@ -1,11 +1,13 @@
 function Dropdown({
   options,
   label,
-  placeholder
+  placeholder,
+  handleChange
 }: {
   options: Array<string>;
   label: string;
   placeholder: string;
+  handleChange: (e: any) => void;
 }) {
   return (
     <div className="drop-down">
@@ -15,12 +17,21 @@ function Dropdown({
         <p>{placeholder}</p>
         <img src="src/assets/icons/arrow.png" alt="arrow" />
       </div> */}
-      <select className="drop-down_container" name="" id="">
+      <select
+        className="drop-down_container"
+        name=""
+        id=""
+        onChange={(e) => handleChange(e.target.value)}
+      >
         <option className="placeholder" hidden>
           {placeholder}
         </option>
         {options.map((opt, index) => {
-          return <option key={index}>{opt}</option>;
+          return (
+            <option value={index} key={index}>
+              {opt}
+            </option>
+          );
         })}
       </select>
     </div>

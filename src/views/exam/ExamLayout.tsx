@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { startTimer, decrementTimer } from "../../features/timer/timerSlice";
-import { RootState } from "../../app/store";
+import {
+  startTimer,
+  decrementTimer
+} from "../../redux/features/timer/timerSlice";
+import { RootState } from "../../redux/store";
 
 function ExamLayout() {
   const { id } = useParams();
