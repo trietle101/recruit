@@ -1,5 +1,7 @@
 import Dropdown from "../../components/Dropdown";
+import { Link } from "react-router-dom";
 function ExamHome() {
+  function handleChange() {}
   return (
     <div className="exam-home">
       <p className="banner">
@@ -7,6 +9,7 @@ function ExamHome() {
       </p>
       <div className="menu-bar">
         <Dropdown
+          handleChange={handleChange}
           label=""
           placeholder="Chọn môn thi"
           options={[
@@ -16,10 +19,10 @@ function ExamHome() {
             "Lập trình di động (React Native)"
           ]}
         />
-        <div className="menu-bar__btn">
+        <Link to="/exam/question/1" className="menu-bar__btn">
           <img src="src/assets/icons/pluss.png" alt="pluss" />
           <p>Tạo đề thi</p>
-        </div>
+        </Link>
       </div>
     </div>
   );

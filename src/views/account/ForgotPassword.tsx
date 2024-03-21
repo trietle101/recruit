@@ -4,12 +4,12 @@ import { useState } from "react";
 // import { RootState } from "../../redux/store";
 import { auth } from "../../firebase/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ForgotPassword() {
   // const dispatch: AppDispatch = useDispatch();
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const { error } = useSelector((state: RootState) => state.user);
   function handleChange(e: any) {
     setEmail(e.value);
@@ -20,8 +20,7 @@ function ForgotPassword() {
     try {
       sendPasswordResetEmail(auth, email)
         .then(() => {
-          console.log("Email reset password sent!");
-          navigate("/account");
+          alert("Hãy kiểm tra email!");
         })
         .catch((error) => {
           // Xử lý lỗi nếu có
@@ -47,7 +46,7 @@ function ForgotPassword() {
             name="email"
           />
           <button type="submit">Xác nhận</button>
-          <a href="#">Quay lại đăng nhập</a>
+          <Link to="/account">Quay lại đăng nhập</Link>
         </div>
       </form>
     </div>

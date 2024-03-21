@@ -7,7 +7,7 @@ function Dropdown({
   options: Array<string>;
   label: string;
   placeholder: string;
-  handleChange: (e: any) => void;
+  handleChange?: (e: any) => void;
 }) {
   return (
     <div className="drop-down">
@@ -21,7 +21,7 @@ function Dropdown({
         className="drop-down_container"
         name=""
         id=""
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(e) => (handleChange ? handleChange(e.target.value) : null)}
       >
         <option className="placeholder" hidden>
           {placeholder}

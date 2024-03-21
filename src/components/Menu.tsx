@@ -1,19 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { setUser, clearUser } from "../redux/features/user/userSlice";
 import { RootState, AppDispatch } from "../redux/store";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../redux/actions/userActionThunk";
+import Slider from "react-slider-modal";
+import "animate.css/animate.min.css";
+import { useState } from "react";
 
 const Menu = () => {
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
-
+  const [slideShow, setSlideShow] = useState(false);
   const { images } = useSelector((state: RootState) => state.images);
-  const { isLoading } = useSelector((state: RootState) => state.user);
   const currentUser = localStorage.getItem("currentUser");
-  if (!isLoading && !currentUser) {
-    navigate("/account");
-  }
+  const role = localStorage.getItem("role");
+
   return (
     <div className="menu">
       <div className="menu-container">
@@ -31,27 +30,54 @@ const Menu = () => {
         <div className="right">
           <div className="right-container">
             {currentUser ? (
-              <>
-                <div className="item">
-                  <img
-                    src="src/assets/icons/user-search-alt-1.png"
-                    alt="user-search-alt-1"
-                  />
-                  <p>Thi trắc nghiệm</p>
-                </div>
-                <div className="item">
-                  <img src="src/assets/icons/syllabus.png" alt="signup" />
-                  <p>Tiến trình học tập</p>
-                </div>
-                <Link
-                  to="/account"
-                  className="user"
-                  onClick={() => dispatch(logout())}
-                >
-                  <img src="src/assets/images/user.png" alt="user" />
-                  <p>Trung Kiên</p>
-                </Link>
-              </>
+              role === "0" ? (
+                <>
+                  <Link to="/employer" className="item">
+                    <img
+                      src="src/assets/icons/file-search-alt.png"
+                      alt="user-search-alt-1"
+                    />
+                    <p>Tìm kiếm việc làm</p>
+                  </Link>
+                  <Link to="/employer/application" className="item">
+                    <img
+                      src="src/assets/icons/building-user.png"
+                      alt="signup"
+                    />
+                    <p>Doanh nghiệp đăng ký</p>
+                  </Link>
+                  <Link
+                    to="/account"
+                    className="user"
+                    onClick={() => dispatch(logout())}
+                  >
+                    <img src="src/assets/images/user.png" alt="user" />
+                    <p>Trung Kiên</p>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/exam" className="item">
+                    <img
+                      src="src/assets/icons/user-search-alt-1.png"
+                      alt="user-search-alt-1"
+                    />
+                    <p>Thi trắc nghiệm</p>
+                  </Link>
+                  <Link to="/report" className="item">
+                    <img src="src/assets/icons/syllabus.png" alt="signup" />
+                    <p>Tiến trình học tập</p>
+                  </Link>
+                  <Link
+                    to="/account"
+                    className="user"
+                    onClick={() => dispatch(logout())}
+                  >
+                    <img src="src/assets/images/user.png" alt="user" />
+                    <p>Trung Kiên</p>
+                  </Link>
+                </>
+              )
             ) : (
               <>
                 <div className="item">
@@ -65,11 +91,123 @@ const Menu = () => {
                   <img src="src/assets/icons/signup.png" alt="signup" />
                   <p>Đăng ký trực tuyến</p>
                 </Link>
+                <Link to="/account" className="user login-btn">
+                  <p>Đăng nhập</p>
+                </Link>
               </>
             )}
           </div>
+          <div
+            className="right-container-mobile"
+            onClick={() => {
+              setSlideShow(!slideShow);
+            }}
+          >
+            <img src="src/assets/icons/menu.png" alt="user-search-alt-1" />
+          </div>
         </div>
       </div>
+      <Slider
+        id="demoID3"
+        className=""
+        direction="right"
+        animation="slide"
+        closeModal={(e) => {
+          setSlideShow(e);
+        }}
+        toggle={slideShow}
+      >
+        <div className="slider-container">
+          <div className="slider-header">
+            <img
+              onClick={() => {
+                setSlideShow(!slideShow);
+              }}
+              src="src/assets/icons/xmark.png"
+              alt="user-search-alt-1"
+            />
+          </div>
+          <div className="right">
+            <div className="right-container">
+              {currentUser ? (
+                role === "0" ? (
+                  <>
+                    <Link to="/employer" className="item">
+                      <img
+                        src="src/assets/icons/file-search-alt.png"
+                        alt="user-search-alt-1"
+                      />
+                      <p>Tìm kiếm việc làm</p>
+                    </Link>
+                    <Link to="/employer/application" className="item">
+                      <img
+                        src="src/assets/icons/building-user.png"
+                        alt="signup"
+                      />
+                      <p>Doanh nghiệp đăng ký</p>
+                    </Link>
+                    <Link
+                      to="/account"
+                      className="user"
+                      onClick={() => dispatch(logout())}
+                    >
+                      <img src="src/assets/images/user.png" alt="user" />
+                      <p>Trung Kiên</p>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/exam" className="item">
+                      <img
+                        src="src/assets/icons/user-search-alt-1.png"
+                        alt="user-search-alt-1"
+                      />
+                      <p>Thi trắc nghiệm</p>
+                    </Link>
+                    <Link to="/report" className="item">
+                      <img src="src/assets/icons/syllabus.png" alt="signup" />
+                      <p>Tiến trình học tập</p>
+                    </Link>
+                    <Link
+                      to="/account"
+                      className="user"
+                      onClick={() => dispatch(logout())}
+                    >
+                      <img src="src/assets/images/user.png" alt="user" />
+                      <p>Trung Kiên</p>
+                    </Link>
+                  </>
+                )
+              ) : (
+                <>
+                  <div className="item">
+                    <img
+                      src="src/assets/icons/user-search-alt-1.png"
+                      alt="user-search-alt-1"
+                    />
+                    <p>Xem JD yêu cầu tuyển dụng</p>
+                  </div>
+                  <Link to="application" className="item">
+                    <img src="src/assets/icons/signup.png" alt="signup" />
+                    <p>Đăng ký trực tuyến</p>
+                  </Link>
+                  <Link to="/account" className="user login-btn">
+                    <p>Đăng nhập</p>
+                  </Link>
+                </>
+              )}
+            </div>
+            <div
+              className="right-container-mobile"
+              onClick={() => {
+                setSlideShow(!slideShow);
+              }}
+            >
+              <img src="src/assets/icons/menu.png" alt="user-search-alt-1" />
+            </div>
+          </div>
+        </div>
+      </Slider>
     </div>
   );
 };

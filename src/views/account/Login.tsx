@@ -12,17 +12,19 @@ import { useState } from "react";
 function Login() {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+  // const currentUser = localStorage.getItem("currentUser");
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
+    role: ""
   });
-  const [role, setRole] = useState("");
+  // const [role, setRole] = useState("");
   const { isLoggedIn, isLoading, error } = useSelector(
     (state: RootState) => state.user
   );
 
   function handleRoleChange(e: any) {
-    setRole(e);
+    setFormData((prevState) => ({ ...prevState, role: e }));
   }
 
   function handleChange(e: any) {
@@ -38,9 +40,8 @@ function Login() {
     }
   }
   if (!isLoading && isLoggedIn) {
-    if (role === "0") {
-      navigate("/employer");
-    } else navigate("/");
+    if (formData.role === "0") navigate("/employer");
+    else navigate("/");
   }
 
   return (

@@ -1,11 +1,15 @@
 import SearchBar from "../components/SearchBar";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 function NotFound() {
+  const { images } = useSelector((state: RootState) => state.images);
+
   return (
     <div className="employeemain">
       <div className="employeemain-container">
         <SearchBar />
-        <div className="banner">
+        <div className="banner banner-notfound">
           <p>
             Tìm <span>công việc mơ ước</span> của bạn
           </p>
@@ -16,7 +20,7 @@ function NotFound() {
           </p>
         </div>
         <div className="notfound-image">
-          <img src="src/assets/images/notfound.png" alt="notfound" />
+          {images !== null && <img src={images[3].url} alt="notfound" />}
         </div>
       </div>
     </div>

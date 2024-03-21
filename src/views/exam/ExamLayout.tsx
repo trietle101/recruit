@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,6 +6,19 @@ import {
   decrementTimer
 } from "../../redux/features/timer/timerSlice";
 import { RootState } from "../../redux/store";
+import Modal from "react-modal";
+
+const customStylesModal = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
+  }
+};
+Modal.setAppElement("#root");
 
 function ExamLayout() {
   const { id } = useParams();
@@ -13,6 +26,15 @@ function ExamLayout() {
   const { seconds, minutes, isRunning } = useSelector(
     (state: RootState) => state.timer
   );
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | null = null;
@@ -51,11 +73,28 @@ function ExamLayout() {
                 00:0{minutes}:{seconds < 10 ? `0${seconds}` : seconds}
               </p>
             </div>
-            <div className="exam-btn">Nộp bài</div>
+            <div className="exam-btn" onClick={openModal}>
+              Nộp bài
+            </div>
           </div>
         </div>
       </div>
       <Outlet />
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStylesModal}
+        contentLabel="Example Modal"
+      >
+        <div className="modal">
+          <h2>Nộp bài thi</h2>
+          <p>Bạn có chắc muốn nộp bài thi hay không?</p>
+          <div className="btn-exam">
+            <button onClick={closeModal}>Đóng</button>
+            <button onClick={closeModal}>Xác nhận</button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

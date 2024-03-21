@@ -7,7 +7,7 @@ function InputPassword({
   placeholder: string;
   label: string;
   name: string;
-  handleChange: (e: any) => void;
+  handleChange?: (e: any) => void;
 }) {
   return (
     <div className="input-password">
@@ -16,7 +16,7 @@ function InputPassword({
         type="password"
         name={name}
         placeholder={placeholder}
-        onChange={(e) => handleChange(e.target)}
+        onChange={(e) => (handleChange ? handleChange(e.target) : null)}
       />
     </div>
   );

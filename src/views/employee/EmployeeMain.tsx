@@ -12,6 +12,11 @@ function EmployeeMain() {
           </p>
           <p> tại ngôi nhà mới</p>
         </div>
+        <div className="banner-mobile">
+          <p>
+            Tìm <span>công việc mơ ước</span> của bạn tại ngôi nhà mới
+          </p>
+        </div>
         <Jobs itemsPerPage={9} />
       </div>
     </div>

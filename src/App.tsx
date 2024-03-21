@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { getImages } from "./redux/actions/imagesActionThunk";
 import { AppDispatch } from "./redux/store";
 
+
 function App() {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {

@@ -1,6 +1,8 @@
 import Card from "./Card";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import { db } from "../firebase/firebase";
+import { writeBatch, doc } from "firebase/firestore";
 
 export type Job = {
   img: string;
@@ -285,6 +287,15 @@ function Jobs({ itemsPerPage }: { itemsPerPage: number }) {
     const newOffset = (event.selected * itemsPerPage) % jobs.length;
     setItemOffset(newOffset);
   };
+  const batch = writeBatch(db);
+
+  // Set the value of 'NYC'
+  jobs.forEach((job, index) => {
+    const jobRef = doc(db, "jobs", index.toString());
+    batch.set(jobRef, job);
+  });
+  batch.commit();
+
   return (
     <div className="jobs">
       <div className="jobs-container">

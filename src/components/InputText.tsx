@@ -6,8 +6,8 @@ function InputText({
 }: {
   placeholder: string;
   label: string;
-  name: string;
-  handleChange: (e: any) => void;
+  name?: string;
+  handleChange?: (e: any) => void;
 }) {
   return (
     <div className="input-text">
@@ -16,7 +16,7 @@ function InputText({
         type="text"
         name={name}
         placeholder={placeholder}
-        onChange={(e) => handleChange(e.target)}
+        onChange={(e) => (handleChange ? handleChange(e.target) : null)}
       />
     </div>
   );

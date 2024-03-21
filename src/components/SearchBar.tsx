@@ -41,6 +41,10 @@ const SearchBar = () => {
           <img src="src/assets/icons/search-w.png" alt="search" />
           <p>Tìm việc</p>
         </div>
+        <div className="search-btn-mobile">
+          <p>Lọc</p>
+          <img src="src/assets/icons/setting-4.png" alt="search" />
+        </div>
       </div>
     </div>
   );

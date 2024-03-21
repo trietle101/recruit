@@ -5,11 +5,12 @@ import { auth } from "../../firebase/firebase";
 interface Credentials {
   email: string;
   password: string;
+  role: string;
 }
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ email, password }: Credentials) => {
+  async ({ email, password, role }: Credentials) => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       const user = res.user;
@@ -17,6 +18,7 @@ export const login = createAsyncThunk(
       const currentUser = user.providerData.map((profile) => {
         return profile;
       });
+      localStorage.setItem("role", role);
       return currentUser[0];
     } catch (error) {
       throw error;

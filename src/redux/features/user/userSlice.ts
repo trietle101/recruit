@@ -63,6 +63,7 @@ export const userSlice = createSlice({
         state.error = null;
         state.isLoggedIn = false;
         localStorage.removeItem("currentUser");
+        localStorage.removeItem("role");
       })
       .addCase(logout.rejected, (state, action: any) => {
         state.isLoading = false;
