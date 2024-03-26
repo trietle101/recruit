@@ -1,5 +1,3 @@
-import React from "react";
-
 function Error({ message, show }: { message: string; show: string }) {
   return (
     <div className={`error ${show}`}>
