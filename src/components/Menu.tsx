@@ -34,7 +34,7 @@ const Menu = () => {
                 <>
                   <Link to="/employer" className="item">
                     <img
-                      src="src/assets/icons/file-search-alt.png"
+                      src="public/assets/icons/file-search-alt.png"
                       alt="user-search-alt-1"
                     />
                     <p>Tìm kiếm việc làm</p>
