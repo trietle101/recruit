@@ -34,16 +34,13 @@ const Menu = () => {
                 <>
                   <Link to="/employer" className="item">
                     <img
-                      src="public/assets/icons/file-search-alt.png"
+                      src="assets/icons/file-search-alt.png"
                       alt="user-search-alt-1"
                     />
                     <p>Tìm kiếm việc làm</p>
                   </Link>
                   <Link to="/employer/application" className="item">
-                    <img
-                      src="public/assets/icons/building-user.png"
-                      alt="signup"
-                    />
+                    <img src="assets/icons/building-user.png" alt="signup" />
                     <p>Doanh nghiệp đăng ký</p>
                   </Link>
                   <Link
@@ -51,7 +48,7 @@ const Menu = () => {
                     className="user"
                     onClick={() => dispatch(logout())}
                   >
-                    <img src="public/assets/images/user.png" alt="user" />
+                    <img src="assets/images/user.png" alt="user" />
                     <p>Trung Kiên</p>
                   </Link>
                 </>
@@ -59,13 +56,13 @@ const Menu = () => {
                 <>
                   <Link to="/exam" className="item">
                     <img
-                      src="public/assets/icons/user-search-alt-1.png"
+                      src="assets/icons/user-search-alt-1.png"
                       alt="user-search-alt-1"
                     />
                     <p>Thi trắc nghiệm</p>
                   </Link>
                   <Link to="/report" className="item">
-                    <img src="public/assets/icons/syllabus.png" alt="signup" />
+                    <img src="assets/icons/syllabus.png" alt="signup" />
                     <p>Tiến trình học tập</p>
                   </Link>
                   <Link
@@ -73,7 +70,7 @@ const Menu = () => {
                     className="user"
                     onClick={() => dispatch(logout())}
                   >
-                    <img src="public/assets/images/user.png" alt="user" />
+                    <img src="assets/images/user.png" alt="user" />
                     <p>Trung Kiên</p>
                   </Link>
                 </>
@@ -82,13 +79,13 @@ const Menu = () => {
               <>
                 <div className="item">
                   <img
-                    src="public/assets/icons/user-search-alt-1.png"
+                    src="assets/icons/user-search-alt-1.png"
                     alt="user-search-alt-1"
                   />
                   <p>Xem JD yêu cầu tuyển dụng</p>
                 </div>
                 <Link to="application" className="item">
-                  <img src="public/assets/icons/signup.png" alt="signup" />
+                  <img src="assets/icons/signup.png" alt="signup" />
                   <p>Đăng ký trực tuyến</p>
                 </Link>
                 <Link to="/account" className="user login-btn">
@@ -103,7 +100,7 @@ const Menu = () => {
               setSlideShow(!slideShow);
             }}
           >
-            <img src="public/assets/icons/menu.png" alt="user-search-alt-1" />
+            <img src="assets/icons/menu.png" alt="user-search-alt-1" />
           </div>
         </div>
       </div>
@@ -123,7 +120,7 @@ const Menu = () => {
               onClick={() => {
                 setSlideShow(!slideShow);
               }}
-              src="public/assets/icons/xmark.png"
+              src="assets/icons/xmark.png"
               alt="user-search-alt-1"
             />
           </div>
@@ -134,16 +131,13 @@ const Menu = () => {
                   <>
                     <Link to="/employer" className="item">
                       <img
-                        src="public/assets/icons/file-search-alt.png"
+                        src="assets/icons/file-search-alt.png"
                         alt="user-search-alt-1"
                       />
                       <p>Tìm kiếm việc làm</p>
                     </Link>
                     <Link to="/employer/application" className="item">
-                      <img
-                        src="public/assets/icons/building-user.png"
-                        alt="signup"
-                      />
+                      <img src="assets/icons/building-user.png" alt="signup" />
                       <p>Doanh nghiệp đăng ký</p>
                     </Link>
                     <Link
@@ -151,7 +145,7 @@ const Menu = () => {
                       className="user"
                       onClick={() => dispatch(logout())}
                     >
-                      <img src="public/assets/images/user.png" alt="user" />
+                      <img src="assets/images/user.png" alt="user" />
                       <p>Trung Kiên</p>
                     </Link>
                   </>
@@ -159,16 +153,13 @@ const Menu = () => {
                   <>
                     <Link to="/exam" className="item">
                       <img
-                        src="public/assets/icons/user-search-alt-1.png"
+                        src="assets/icons/user-search-alt-1.png"
                         alt="user-search-alt-1"
                       />
                       <p>Thi trắc nghiệm</p>
                     </Link>
                     <Link to="/report" className="item">
-                      <img
-                        src="public/assets/icons/syllabus.png"
-                        alt="signup"
-                      />
+                      <img src="assets/icons/syllabus.png" alt="signup" />
                       <p>Tiến trình học tập</p>
                     </Link>
                     <Link
@@ -176,7 +167,7 @@ const Menu = () => {
                       className="user"
                       onClick={() => dispatch(logout())}
                     >
-                      <img src="public/assets/images/user.png" alt="user" />
+                      <img src="assets/images/user.png" alt="user" />
                       <p>Trung Kiên</p>
                     </Link>
                   </>
@@ -185,13 +176,13 @@ const Menu = () => {
                 <>
                   <div className="item">
                     <img
-                      src="public/assets/icons/user-search-alt-1.png"
+                      src="assets/icons/user-search-alt-1.png"
                       alt="user-search-alt-1"
                     />
                     <p>Xem JD yêu cầu tuyển dụng</p>
                   </div>
                   <Link to="application" className="item">
-                    <img src="public/assets/icons/signup.png" alt="signup" />
+                    <img src="assets/icons/signup.png" alt="signup" />
                     <p>Đăng ký trực tuyến</p>
                   </Link>
                   <Link to="/account" className="user login-btn">
@@ -206,7 +197,7 @@ const Menu = () => {
                 setSlideShow(!slideShow);
               }}
             >
-              <img src="public/assets/icons/menu.png" alt="user-search-alt-1" />
+              <img src="assets/icons/menu.png" alt="user-search-alt-1" />
             </div>
           </div>
         </div>
