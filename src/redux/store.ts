@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/user/userSlice";
 import timerReducer from "./features/timer/timerSlice";
 import imagesReducer from "./features/images/imagesSlice";
+import jobsReducer from "./features/jobs/jobsSlice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     timer: timerReducer,
-    images: imagesReducer
+    images: imagesReducer,
+    jobs: jobsReducer
   }
 });
 

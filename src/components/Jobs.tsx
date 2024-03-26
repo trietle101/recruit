@@ -1,8 +1,9 @@
 import Card from "./Card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
-import { db } from "../firebase/firebase";
-import { writeBatch, doc } from "firebase/firestore";
+import { getJobs } from "../redux/actions/jobsActionThunk";
+import { RootState, AppDispatch } from "../redux/store";
 
 export type Job = {
   img: string;
@@ -11,297 +12,28 @@ export type Job = {
   description: string;
 };
 
-const jobs: Array<Job> = [
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/alta.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Group",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/alta.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Group",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/alta.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Group",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/media.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Media",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/unigons.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Unigons",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/software.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Software",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  },
-  {
-    img: "src/assets/images/Plastics.png",
-    tittle: "Thiết kế UI/UX (Figma)",
-    company: "Alta Plastic",
-    description: "Yêu cầu: Có tối thiểu 1 năm kinh nghiệm ReactJS, Typecript"
-  }
-];
-
 function Jobs({ itemsPerPage }: { itemsPerPage: number }) {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(getJobs());
+  }, []);
+  const { jobs } = useSelector((state: RootState) => state.jobs);
+
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = jobs.slice(itemOffset, endOffset);
+  let currentItems = [];
+  currentItems = jobs.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(jobs.length / itemsPerPage);
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % jobs.length;
     setItemOffset(newOffset);
   };
-  const batch = writeBatch(db);
-
-  // Set the value of 'NYC'
-  jobs.forEach((job, index) => {
-    const jobRef = doc(db, "jobs", index.toString());
-    batch.set(jobRef, job);
-  });
-  batch.commit();
 
   return (
     <div className="jobs">
       <div className="jobs-container">
-        {currentItems.map((job, index) => (
-          <Card key={index} job={job} />
-        ))}
+        {currentItems &&
+          currentItems.map((job, index) => <Card key={index} job={job} />)}
       </div>
       <ReactPaginate
         breakLabel="..."
