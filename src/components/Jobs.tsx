@@ -37,12 +37,12 @@ function Jobs({ itemsPerPage }: { itemsPerPage: number }) {
       </div>
       <ReactPaginate
         breakLabel="..."
-        nextLabel={<img src={"src/assets/icons/chevron-right.png"} />}
+        nextLabel={<img src={"assets/icons/chevron-right.png"} />}
         onPageChange={handlePageClick}
         pageRangeDisplayed={4}
         marginPagesDisplayed={1}
         pageCount={pageCount}
-        previousLabel={<img src={"src/assets/icons/chevron-left.png"} />}
+        previousLabel={<img src={"assets/icons/chevron-left.png"} />}
         renderOnZeroPageCount={null}
         containerClassName={"pagination"}
       />

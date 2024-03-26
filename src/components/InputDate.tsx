@@ -10,10 +10,10 @@ function InputDate({
       <label className="label">{label}</label>
       <div className="input-date_container">
         <div className="left">
-          <img src="src/assets/icons/Calendar.png" alt="Calendar" />
+          <img src="assets/icons/Calendar.png" alt="Calendar" />
           <p>{placeholder}</p>
         </div>
-        <img src="src/assets/icons/circle-xmark.png" alt="circle-xmark" />
+        <img src="assets/icons/circle-xmark.png" alt="circle-xmark" />
       </div>
     </div>
   );

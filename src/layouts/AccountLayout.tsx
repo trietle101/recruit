@@ -5,11 +5,11 @@ const AccountLayout = () => {
     <div className="account-layout">
       <div className="header">
         <Link to="/" className="icons">
-          <img src="src/assets/images/alta.png" alt="alta" />
-          <img src="src/assets/images/Plastics.png" alt="alta" />
-          <img src="src/assets/images/media.png" alt="alta" />
-          <img src="src/assets/images/software.png" alt="alta" />
-          <img src="src/assets/images/unigons.png" alt="alta" />
+          <img src="assets/images/alta.png" alt="alta" />
+          <img src="assets/images/Plastics.png" alt="alta" />
+          <img src="assets/images/media.png" alt="alta" />
+          <img src="assets/images/software.png" alt="alta" />
+          <img src="assets/images/unigons.png" alt="alta" />
         </Link>
         <p>
           HỆ THỐNG TUYỂN DỤNG <br /> VÀ QUẢN LÝ SINH VIÊN THỰC TẬP
@@ -17,7 +17,7 @@ const AccountLayout = () => {
       </div>
       <div className="content">
         <Outlet />
-        <img src="src/assets/images/login.png" alt="alta" />
+        <img src="assets/images/login.png" alt="alta" />
       </div>
     </div>
   );

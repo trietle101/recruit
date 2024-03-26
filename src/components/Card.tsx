@@ -14,18 +14,18 @@ function Card(props: { job: Job }) {
               </div>
             </div>
             <div className="right">
-              <img src="src/assets/icons/download.png" alt="download" />
+              <img src="assets/icons/download.png" alt="download" />
             </div>
           </div>
           <div className="description">{props.job.description}</div>
         </div>
         <div className="contact">
           <div className="left">
-            <img src="src/assets/icons/email.png" alt="email" />
+            <img src="assets/icons/email.png" alt="email" />
             <p>tuyendung@alta.com.vn</p>
           </div>
           <div className="right">
-            <img src="src/assets/icons/phone.png" alt="phone" />
+            <img src="assets/icons/phone.png" alt="phone" />
             <p>0282 240 9960</p>
           </div>
         </div>

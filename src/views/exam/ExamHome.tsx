@@ -20,7 +20,7 @@ function ExamHome() {
           ]}
         />
         <Link to="/exam/question/1" className="menu-bar__btn">
-          <img src="src/assets/icons/pluss.png" alt="pluss" />
+          <img src="assets/icons/pluss.png" alt="pluss" />
           <p>Tạo đề thi</p>
         </Link>
       </div>

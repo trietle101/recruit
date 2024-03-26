@@ -47,10 +47,10 @@ function Question() {
       </form>
       <div className="question__btn">
         <Link to={`/exam/question/${Number(id) - 1}`}>
-          <img src="src/assets/icons/arrow-sm-left.png" alt="arrow-sm-left" />
+          <img src="assets/icons/arrow-sm-left.png" alt="arrow-sm-left" />
         </Link>
         <Link to={`/exam/question/${Number(id) + 1}`}>
-          <img src="src/assets/icons/arrow-sm-right.png" alt="arrow-sm-right" />
+          <img src="assets/icons/arrow-sm-right.png" alt="arrow-sm-right" />
         </Link>
       </div>
     </div>

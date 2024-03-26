@@ -68,7 +68,7 @@ function ExamLayout() {
               <span>{id}/20</span>
             </div>
             <div className="timer">
-              <img src="src/assets/icons/clock.png" alt="clock" />
+              <img src="assets/icons/clock.png" alt="clock" />
               <p>
                 00:0{minutes}:{seconds < 10 ? `0${seconds}` : seconds}
               </p>

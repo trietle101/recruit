@@ -15,7 +15,7 @@ function Dropdown({
 
       {/* <div className="drop-down_container">
         <p>{placeholder}</p>
-        <img src="src/assets/icons/arrow.png" alt="arrow" />
+        <img src="assets/icons/arrow.png" alt="arrow" />
       </div> */}
       <select
         className="drop-down_container"
